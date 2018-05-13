@@ -33,7 +33,7 @@ server.get("/todos", (req,res) => {
 server.get("/todos/:id", (req,res) => {
   var id = req.params.id;
   if(!ObjectID.isValid(id)){
-    return res.send('Invalid input');
+    return res.status(400).send();
   }
   Todo.findById(id, (err,todo)=> {
     if(err){
@@ -50,8 +50,3 @@ server.get("/todos/:id", (req,res) => {
 server.listen(port, () => {
   console.log(`Server started on port: ${port}`);
 });
-// user.save().then((doc) => {
-//    console.log('User saved:', doc)
-// },(e) => {
-//    console.log('Unable to save user', e)
-// });
